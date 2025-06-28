@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+whatsapp_composer_user,WhatsApp Composer User,model_mail_whatsapp_composer,,1,1,1,0
+mail_whatsapp_user,Mail WhatsApp User,model_mail_whatsapp,,1,1,1,0

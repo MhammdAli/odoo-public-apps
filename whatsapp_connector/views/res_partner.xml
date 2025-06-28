@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_view_form_whatsapp" model="ir.ui.view">
+        <field name="name">res_partner.view.form.whatsapp</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside"> 
+                <button 
+                    name="open_whatsapp_composer" 
+                    type="object" 
+                    class="oe_stat_button" 
+                    string="Send WhatsApp"
+                    icon="fa-whatsapp" 
+                    context="{'partner_readonly': True,'default_recepiant_id' : id}"
+                    invisible="not mobile" 
+                />   
+                <!-- <button 
+                    name="whatsapp_connector.whatsapp_composer_action" 
+                    type="action" 
+                    class="oe_stat_button" 
+                    string="Send WhatsApp Message"
+                    icon="fa-whatsapp"
+                    context="{'partner_readonly': True,'default_partner_id': context.get('active_id',False),'default_model' : 'res.partner','default_res_id' : context.get('active_id',False) }"
+                    invisible="not mobile" 
+                />   -->
+            </div>
+ 
+        </field>
+    </record>
+
+</odoo>

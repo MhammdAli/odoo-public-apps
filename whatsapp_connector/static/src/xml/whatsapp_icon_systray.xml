@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="whatsapp_icon_systray"> 
+        <div class="o-mail-DiscussSystray-class">
+            <button
+                class="o-dropdown dropdown-toggle dropdown"
+                title="Send Email via WhatsApp"
+                tabindex="0"
+                aria-expanded="false"
+                t-on-click="openWhatsapp"
+            >
+                <i class="fa fa-whatsapp"  role="img" aria-label="Whatsapp Messages" />
+            </button>
+        </div>  
+    </t>    
+
+</templates> 

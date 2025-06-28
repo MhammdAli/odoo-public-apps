@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="portal_share_whatsapp_view_form" model="ir.ui.view">
+        <field name="name">portal.share.whatsapp.view.form</field>
+        <field name="model">portal.share</field>
+        <field name="inherit_id" ref="portal.portal_share_wizard" />
+        <field name="arch" type="xml">
+            <field name="share_link" position="before">
+                <field name="share_method" widget="radio" />
+            </field>
+
+            <field name="share_link" position="after" >
+                <field name="customer_id" invisible="share_method != 'whatsapp'" />
+                <field name="mobile" invisible="share_method != 'whatsapp'"/> 
+            </field>
+
+            <field name="partner_ids" position="attributes">
+                <attribute name="invisible">share_method == 'whatsapp'</attribute> 
+            </field>
+            
+            <field name="note" position="attributes">
+                <attribute name="widget">text_emojis</attribute> 
+                <attribute name="invisible">share_method == 'whatsapp'</attribute>   
+            </field> 
+            
+
+            <field name="note" position="after" >
+                 <field name="body" widget="text_emojis" class="oe-bordered-editor"
+                            options="{'codeview': true, 'dynamic_placeholder': true,'dynamic_placeholder_model_reference_field' : 'res_model'}" invisible="share_method != 'whatsapp'"/> 
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <!-- <app data-string="General Settings" string="General Settings" name="general_settings" logo="/base/static/description/settings.png"> -->
+
+    <record id="res_config_settings_whatsapp_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.whatsapp.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='sale_management']" position="inside">
+                <block title="Whatsapp" id="whatsapp_settings_container">
+                    <setting id="whatsapp_template" string="Whatsapp Template" class="w-100" help="This template defines the structure and content of WhatsApp messages sent to customers. It ensures messages are pre-approved and formatted correctly for automated communication through WhatsApp.">
+                        <field name="whatsapp_model" invisible="1" />
+                        <field name="whatsapp_template_note" widget="text_emojis" 
+                            options="{'dynamic_placeholder': True,'dynamic_placeholder_model_reference_field': 'whatsapp_model'}"
+                        />
+                        <p class="small">This whatsapp template is for sales order and invoices</p>
+                    </setting> 
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Whatsapp Settings" string="Whatsapp Settings" name="whatsapp_settings" logo="/whatsapp_connector/static/description/icon.png"> 
+                    <block title="Whatsapp"> 
+                        <setting string="Whatsapp Template"  class="w-100" help="This template defines the structure and content of WhatsApp messages sent to customers. It ensures messages are pre-approved and formatted correctly for automated communication through WhatsApp.">
+                            <p class="small">This whatsapp template is for sales order and invoices</p>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+
+    </record> -->
+
+</odoo>

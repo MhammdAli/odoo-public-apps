@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="mail_icon_systray">   
+        <div class="o-mail-DiscussSystray-class">
+            <button
+                class="o-dropdown dropdown-toggle dropdown"
+                title="Send Email via Email Composer"
+                tabindex="0"
+                aria-expanded="false"
+                t-on-click="openMailComposer"
+            >
+                <i class="fa fa-envelope"  role="img" aria-label="Mail Messages" />
+            </button>
+        </div>  
+    </t>    
+
+</templates> 
+
+ 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_whatsapp_view_form" model="ir.ui.view">
+        <field name="name">sale_order_whatsapp.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">  
+                <!-- <button string="Send By Whatsapp" name="send_whatsapp_message" type="object" class="oe_highlight" icon="fa-whatsapp" context="{'default_partner_id' : partner_id}"/> -->
+ 
+                <button string="Send By Whatsapp"
+                  name="open_whatsapp_composer"  type="object" class="oe_highlight"
+                  invisible="mobile == False or not partner_id"
+                   icon="fa-whatsapp" 
+                   context="{'default_recepiant_id' : partner_id,'partner_readonly': True,'default_model' : 'sale.order','default_res_id' : id}"/> 
+                <!-- 'default_partner_id' : partner_id check here why it is not working when using default_partner_id and it works with default_x other than partner_id -->
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

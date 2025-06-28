@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="whatsapp_composer_view_form" model="ir.ui.view">
+        <field name="name">whatsapp.composer.view.form</field>
+        <field name="model">mail.whatsapp.composer</field>
+        <field name="arch" type="xml">
+            <form string="Whatsapp Composer">
+                <sheet>
+                    <group>
+                    <group>
+                        <!-- <field name="partner_id" /> -->
+                        <field name="recepiant_id" readonly="context.get('partner_readonly',False)"/>
+                        <field name="mobile" /> 
+                        <field name="model" invisible="1" />
+                        <field name="body" widget="text_emojis" class="oe-bordered-editor"
+                            options="{'dynamic_placeholder': true}"/> 
+                        </group>
+
+                        <group>
+                            <field name="partner_avatar" nolabel="1" widget="image" class="oe_avatar" options="{'size': [200, 200]}" />
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button string="Send" name="send_whatsapp_message" type="object" class="btn btn-primary" icon="fa-whatsapp"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>    
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="whatsapp_composer_action" model="ir.actions.act_window">
+        <field name="name">Compose Whatsapp Message</field>
+        <field name="res_model">mail.whatsapp.composer</field>
+        <field name="view_mode">form</field> 
+        <field name="view_id" ref="whatsapp_composer_view_form"/>
+        <field name="target">new</field>
+        <!-- <field name="context">{'default_partner_id': active_id}</field> -->
+        <!-- <field name="context">{'default_partner_id': context.get('active_id',False)}</field> -->
+    </record>
+
+</odoo>

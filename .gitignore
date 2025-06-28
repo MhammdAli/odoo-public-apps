@@ -1,0 +1,11 @@
+# Ignore Python compiled files everywhere
+*.pyc
+
+# Ignore Python cache folders everywhere
+__pycache__/
+
+# Ignore IDE config files
+.idea/
+
+# Ignore swap files (vim/some editors)
+*.swp
