@@ -1,6 +1,6 @@
 {
     'name': 'Whatsapp Connector',
-    'version': '1.0',
+    'version': '18.0',
     'category': 'services/whatsapp',
     'summary': 'Whatsapp Connector App for Odoo',
     'description': """
