@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="warehouse_setting_container" position="after">
+                <block title="Low Stock Notification" name="low_stock_notification" groups="stock.group_stock_manager">
+                    <setting id="stock_low_notification" help="Low Stock Notification" title="This will be notify when low product stock quantity accuried">
+                        <field name="group_stock_low_quantity"/> 
+                    </setting> 
+
+                    <setting id="product_quantity_applied_on" invisible="not group_stock_low_quantity">
+                        <field name="product_quantity_applied_on" widget="radio"/> 
+                    </setting> 
+
+                    <setting id="product_quantity_type" invisible="not group_stock_low_quantity">
+                        <field name="quantity_type" widget="radio" options="{'horizontal': True}"/> 
+                    </setting>
+                    
+                    <setting id="min_quantity"  invisible="not group_stock_low_quantity or product_quantity_applied_on != 'global'">
+                        <field name="min_quantity"/> 
+                    </setting>
+
+                    <setting id="mail_template_cron_job"  invisible="not group_stock_low_quantity" groups="base.group_system">
+                        <group string="Low Stock Cron Job">
+                            <div>
+                                <span class="oi oi-arrow-right pe-2"/>
+                                <field name="low_stock_cron_job_xml" nolabel="1" />
+                            </div>
+                            <field name="low_stock_mail_cron_job_interval_type" />
+                            <field name="low_stock_mail_cron_job_interval_number" />
+                        </group>
+                    </setting>
+                </block>
+            </block>
+        </field>
+    </record>
+
+</odoo>
+
+<!-- <setting
+
+help // it is used as help message it will be displayed below the name of the field(string="") it will takes the first field insoide the settings tag
+title // message used for tooltip when hoverrig over the settings block
+<div class="content-group">
+                            <div class="mt8" invisible="not group_stock_low_quantity">
+                                 <group>
+                                    <field name="quantity_type" widget="radio" />
+                                    <field name="min_quantity" />
+                                    <field name="product_quantity_applied_on" widget="radio" />
+                                 </group>
+                            </div>
+                        </div>  -->

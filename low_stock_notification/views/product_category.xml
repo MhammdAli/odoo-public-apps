@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_category_view_form" model="ir.ui.view">
+        <field name="name">product.category.view.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+             <group name="first" position="after" >
+                <group name="low_stock" string="Low Stock" invisible="not is_low_stock_applied_on_product_category" groups="low_stock_notification.group_stock_low_quantity">
+                    <field name="low_stock_min_qty" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

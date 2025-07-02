@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_view_list_inherit" model="ir.ui.view">
+        <field name="name">product.view.listinherit</field>
+        <field name="model">product.template</field> 
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml"> 
+            <list position="attributes">
+                <attribute name="decoration-danger">
+                    is_low_stock
+                </attribute>
+            </list>
+ 
+            <!-- <xpath expr="//list" position="attributes">
+                <attribute name="decoration-danger">
+                    1
+                </attribute>
+            </xpath> -->
+        </field>
+    </record>
+
+    <record id="product_template_view_kanban_inherit" model="ir.ui.view">
+        <field name="name">product.template.view.kanban.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view" />
+        <field name="arch" type="xml">
+            <t t-name="card" position="inside"> 
+                <widget name="web_ribbon" title="Low Stock" bg_color="text-bg-danger" invisible="not is_low_stock" groups="low_stock_notification.group_stock_low_quantity"/>
+            </t> 
+            <kanban position="attributes">
+                <attribute name="highlight_color">low_stock_color</attribute>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="product_template_view_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.view.form.inherit</field>
+        <field name="model">product.template</field> 
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml"> 
+            <xpath expr="//notebook//page[@name='general_information']//group[@name='group_general']" position="inside">
+                <field name="low_stock_min_qty" invisible="not is_low_stock_applied_on_individual or not is_storable" groups="low_stock_notification.group_stock_low_quantity" /> 
+            </xpath> 
+            
+        </field>
+    </record>
+
+    
+</odoo>

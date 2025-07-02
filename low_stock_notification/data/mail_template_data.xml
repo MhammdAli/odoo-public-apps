@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0">
+     
+
+     <record id="low_stock_notification" model="mail.template">
+         <field name="name">Low Stock Notification</field>
+         <field name="description">Notification email for low stock inventory items</field>
+         <field name="model_id" ref="web.model_res_company"/>
+         <field name="subject">⚠️ Low Stock Alert: {{ len(ctx.get('items', [])) }} Items Need Your Attention</field>
+         <field name="email_from">{{ user.email or user.login }}</field> 
+         <field name="email_to">{{ object.email or '' }}</field>
+         <field name="auto_delete">True</field>
+         <field name="body_html" type="html">
+            <div data-oe-version="2.0">
+               <t t-set="items" t-value="ctx.get('items', [])"></t>
+               <t t-set="applied_on" t-value="ctx.get('applied_on', 'global')"></t>
+               <t t-set="based_on" t-value="ctx.get('based_on', 'on_hand')"></t>
+               <t t-set="items_count" t-value="len(items)"></t>
+            </div>
+
+            <table border="0" cellpadding="0" cellspacing="0" style="border-radius:0px;border-style:none;padding:16px 0 0 0;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;caption-side:bottom;padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;" width="100%">
+               <tbody style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                  <tr style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                     <td align="center" style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                        
+                        
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="border-radius: 0px; border-style: none; margin: 0px; box-sizing: border-box; border-width: 0px; caption-side: bottom; padding: 16px; background-color: white; color: #454748; border-collapse: separate; font-family: Verdana, Arial, sans-serif;">
+                           
+                           
+                           <tbody style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                              
+                              
+                              <tr style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                 <td align="center" style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width: 590px;">
+                                    <table width="590" cellpadding="0" cellspacing="0" style="border-radius: 0px; border-style: none; margin: 0px; box-sizing: border-box; border-width: 0px; caption-side: bottom; padding: 0px 8px; background-color: white; border-collapse: separate; color: #454748; font-family: Verdana, Arial, sans-serif;">
+                                       <tbody style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                          <tr style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                             <td valign="middle" style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                                <span style="font-size: 10px;">Inventory Notification</span>
+                                                <br/>
+                                                <span style="font-size: 20px; font-weight: bold;">
+                                                Low stock detected for one or more items
+                                                </span> 
+                                             </td>
+
+
+                                             <td valign="middle" align="right" style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                                <t t-if="not object.uses_default_logo">
+                                                   <img t-att-src="'/logo.png?company=%s' % object.id" style="border-radius:0px;border-style:none;padding:0px;margin:0 10px 0 0;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;vertical-align:middle;height: auto; width: 80px; margin-right: 10px;" t-att-alt="'%s' % object.name" width="80"/>
+                                                </t>
+                                             </td>
+                                          </tr>
+
+                                          <tr style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                             <td colspan="2" style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center;">
+                                                <hr style="border-radius: 0px; padding: 0px; box-sizing: border-box; opacity: 0.25; color: #454748; background-color: #cccccc; border: none; height: 1px; margin: 16px 0px;"/>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                              <!-- BODY --> 
+                              <tr style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                 <td align="center" style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                    <table width="590" cellpadding="0" cellspacing="0" style="border-radius: 0px; border-style: none; margin: 0px; box-sizing: border-box; border-width: 0px; caption-side: bottom; padding: 0px 8px; background-color: white; border-collapse: separate; color: #454748; font-family: Verdana, Arial, sans-serif;">
+                                       <tbody style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                          <tr style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                             <td style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;font-size: 14px;">
+                                                
+                                                <p style="border-radius:0px;border-style:none;padding:0px;margin:0px 0 16px 0;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                                   Dear 
+                                                   <strong><t t-out="object.name or 'Company'"></t></strong>
+                                                   ,
+                                                   <br/><br/>
+                                                   You have received 
+                                                   <strong style="border-radius:0px;border-style:none;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;font-weight:bolder;">
+                                                      <t t-out="items_count"></t>
+                                                   </strong>
+                                                      item(s) in your inventory have reached low stock levels. These items require your attention and may need to be restocked to avoid disruptions.
+                                                   <br/><br/>
+                                                </p>
+            
+
+                                                <table width="100%" cellpadding="6" cellspacing="0" style="border-radius: 0px; padding: 0px; margin: 0px 0px 16px; box-sizing: border-box; caption-side: bottom; border: 1px solid #dddddd; border-collapse: collapse; font-size: 13px; color: #454748; font-family: Verdana, Arial, sans-serif;">
+                                                   <t t-set="is_applied_individual" t-value="applied_on != 'global'"/>
+                                                   <thead style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;background-color: #F9F9F9; text-align: left;">
+                                                      <tr style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                                         <th style="border-radius:0px;border-style:solid;padding:6px;margin:0px;box-sizing:border-box;border-left-color:#dddddd;border-bottom-color:#dddddd;border-right-color:#dddddd;border-top-color:#dddddd;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-align:-webkit-match-parent;font-weight:500;border: 1px solid #DDDDDD;">Product Name</th>
+                                                         <th style="border-radius:0px;border-style:solid;padding:6px;margin:0px;box-sizing:border-box;border-left-color:#dddddd;border-bottom-color:#dddddd;border-right-color:#dddddd;border-top-color:#dddddd;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-align:-webkit-match-parent;font-weight:500;border: 1px solid #DDDDDD;">
+                                                            <t t-if="based_on == 'on_hand'">On Hand Qty</t>
+                                                            <t t-else="">Forecasted Qty</t>
+                                                         </th>
+                                                         <th style="border-radius:0px;border-style:solid;padding:6px;margin:0px;box-sizing:border-box;border-left-color:#dddddd;border-bottom-color:#dddddd;border-right-color:#dddddd;border-top-color:#dddddd;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-align:-webkit-match-parent;font-weight:500;border: 1px solid #DDDDDD;">Remaining Qty</th>
+                                                         <th t-if="is_applied_individual" style="border-radius:0px;border-style:solid;padding:6px;margin:0px;box-sizing:border-box;border-left-color:#dddddd;border-bottom-color:#dddddd;border-right-color:#dddddd;border-top-color:#dddddd;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-align:-webkit-match-parent;font-weight:500;border: 1px solid #DDDDDD;">Minimum Qty</th>
+                                                      </tr>
+                                                   </thead>
+                                                   <tbody style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;">
+                                                       
+                                                      <tr t-foreach="items" t-as="item" t-key="item['name']" style="border-radius:0px;border-style:solid;padding:0px;margin:0px;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;"> 
+                                                         <td style="border-radius:0px;border-style:solid;padding:6px;margin:0px;box-sizing:border-box;border-left-color:#dddddd;border-bottom-color:#dddddd;border-right-color:#dddddd;border-top-color:#dddddd;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;border: 1px solid #DDDDDD;">
+                                                            <t t-out="item['name'] or 'N/A'"></t>
+                                                         </td>
+
+                                                         <td style="border-radius:0px;border-style:solid;padding:6px;margin:0px;box-sizing:border-box;border-left-color:#dddddd;border-bottom-color:#dddddd;border-right-color:#dddddd;border-top-color:#dddddd;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;border: 1px solid #DDDDDD;">
+                                                            <t t-if="based_on == 'on_hand'">
+                                                               <t t-out="item['on_hand']"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                               <t t-out="item['forcasted']"/>
+                                                            </t>
+                                                         </td>
+                                                         <td style="border-radius:0px;border-style:solid;padding:6px;margin:0px;box-sizing:border-box;border-left-color:#dddddd;border-bottom-color:#dddddd;border-right-color:#dddddd;border-top-color:#dddddd;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;border: 1px solid #DDDDDD;">
+                                                            <t t-out="item['remaining_qty']"></t>
+                                                         </td>
+                                                         <td t-if="is_applied_individual" style="border-radius:0px;border-style:solid;padding:6px;margin:0px;box-sizing:border-box;border-left-color:#dddddd;border-bottom-color:#dddddd;border-right-color:#dddddd;border-top-color:#dddddd;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;border: 1px solid #DDDDDD;">
+                                                            <t t-out="item['min_qty']"></t>
+                                                         </td>
+                                                      </tr> 
+                                                   </tbody>
+                                                </table>
+
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+
+         </field>
+      </record>
+  
+    
+    </data>
+    
+
+</odoo>
